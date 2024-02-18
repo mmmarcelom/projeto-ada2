@@ -38,6 +38,10 @@ insert into lists (name, owner_id) values
 
 select * from lists
 
+DELETE FROM lists WHERE id = 10
+
+INSERT INTO lists (name, owner_id) values ('Cozinha', 1)
+
 insert into items (name, quantity, list_id) values
 ('Maça', 5, 1),
 ('Banana', 12, 1),
