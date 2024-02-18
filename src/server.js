@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: true}))
 
 // Inicia as rotas
 app.use('/lists', require("./routes/lists.js"))
+
 app.get('/', (req, res)=> res.send('Home'))
 
 const PORT = process.env.PORT_SERVER || 8080

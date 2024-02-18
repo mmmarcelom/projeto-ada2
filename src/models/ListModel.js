@@ -1,14 +1,14 @@
-// models/List.js
+// models/ListModel.js
 
 const client = require("../config/db")
 
 class List {
-  constructor(id, name, owner_id, createdAt, updatedAt) {
+  constructor(id, name, owner_id, created_at, updated_at) {
     this.id = id;
     this.name = name;
     this.owner_id = owner_id;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
+    this.created_at = created_at;
+    this.updated_at = updated_at;
   }
 
   async getLists() {
@@ -21,8 +21,8 @@ class List {
           row.id, 
           row.name,
           row.owner_id,
-          new Date(row.createdat),
-          new Date(row.createdat)
+          new Date(row.created_at),
+          new Date(row.created_at)
         )
     )
   }
@@ -44,8 +44,8 @@ class List {
           row.id, 
           row.name,
           row.owner_id,
-          new Date(row.createdat),
-          new Date(row.createdat)
+          new Date(row.created_at),
+          new Date(row.created_at)
         )
     )[0]
 
