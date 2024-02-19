@@ -1,17 +1,32 @@
+drop table items 
+drop table lists 
+drop table owners 
+drop table users
+
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    login VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    salt VARCHAR(255) NOT NULL
+)
+
+SELECT * FROM users WHERE login='marcelo.mesquita'
+
 CREATE TABLE owners (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE lists (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     owner_id INT NOT NULL,
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (owner_id) REFERENCES owners(id)
 );
 
@@ -38,10 +53,6 @@ insert into lists (name, owner_id) values
 
 select * from lists
 
-DELETE FROM lists WHERE id = 10
-
-INSERT INTO lists (name, owner_id) values ('Cozinha', 1)
-
 insert into items (name, quantity, list_id) values
 ('Maça', 5, 1),
 ('Banana', 12, 1),
@@ -57,4 +68,4 @@ insert into items (name, quantity, list_id) values
 ('Borracha', 10, 3),
 ('Caderno', 10, 3)
 
-select * from items where list_id = 2
+select * from items where id = 15
