@@ -1,6 +1,6 @@
 // models/ListModel.js
 
-const client = require("../config/db")
+const connection = require("../config/db")
 
 class List {
   constructor(id, name, owner_id, created_at, updated_at) {
@@ -13,7 +13,7 @@ class List {
 
   async getLists() {
     const query = 'SELECT * FROM lists'
-    const result = await client.query(query);
+    const result = await connection.query(query);
     
     return result.rows.map(
       row => 
@@ -29,14 +29,14 @@ class List {
 
   async createList(newList) {
     const query = `INSERT INTO lists (name, owner_id) values ('${newList.name}', ${newList.owner_id}) RETURNING id`
-    const result = await client.query(query)
+    const result = await connection.query(query)
     
     return result.rows[0].id
   }
 
   async getListById(id) {
     const query = `SELECT * FROM lists WHERE id = ${id}`
-    const result = await client.query(query)
+    const result = await connection.query(query)
     
     const resultList = result.rows.map(
       row => 
@@ -54,7 +54,7 @@ class List {
 
   async deleteListById(id) {
     const query = `DELETE FROM lists WHERE id = ${id}`
-    const result = await client.query(query)
+    const result = await connection.query(query)
     if(result.rowCount > 1) throw new Error('Deleted more than one ID.');
     if(result.rowCount == 0) return false
     return true
@@ -67,7 +67,7 @@ class List {
     SET name = '${updatedList.name}', owner_id = ${updatedList.owner_id}
     WHERE id = ${id}
     `
-    const result = await client.query(query)
+    const result = await connection.query(query)
 
     if(result.rowCount > 1) throw new Error('Updated more than one ID.');
     if(result.rowCount == 0) return false

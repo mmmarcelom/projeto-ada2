@@ -3,7 +3,7 @@
 require('dotenv').config()
 const { Client } = require('pg')
 
-const client = new Client({
+const connection = new Client({
   user: process.env.DB_USER,
   password: process.env.DB_PWD,
   database: process.env.DB_NAME,
@@ -12,8 +12,8 @@ const client = new Client({
   ssl: process.env.DB_SSL,
 });
 
-client.connect()
+connection.connect()
   .then(() => console.log('Conectado ao PostgreSQL no Render'))
   .catch(error => console.error('Error ao conectar com o PostgreSQL:', error));
 
-module.exports = client
+module.exports = connection
