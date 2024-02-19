@@ -1,3 +1,6 @@
+Projeto disponível em: https://github.com/mmmarcelom/projeto-ada2
+Arquivo enviado via zip devido ao arquivo .env que está no gitignore
+
 # Backend - Ada/Ifood
 
 Esse repositório representa a resolução de um case de Express Intermediário no curso de Backend da ADA/Ifood.
