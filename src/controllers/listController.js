@@ -24,7 +24,7 @@ const getList = async (req, res) => {
 
 const deleteList = async (req, res) => { 
   const listModel = new List()
-  if(!await listModel.deleteListById(req.params.id)) res.status(500).send("Error")
+  if(!await listModel.deleteListById(req.params.id)) return res.status(500).send("Error")
   res.status(200).send("Deleted")
   
 }
@@ -36,14 +36,10 @@ const updateList = async (req, res) => {
   const oldList = await listModel.getListById(req.params.id)
   let updatedList = { ... oldList, ... req.body } 
   
-  if(!await listModel.updateListById(id, updatedList)) res.status(500).send("Error")
+  if(!await listModel.updateListById(id, updatedList)) return res.status(500).send("Error")
   res.status(202).send("Updated")
 
 }
-
-const addItem = (req, res) => { res.send('addItem not implemented')}
-const deleteItem = (req, res) => { res.send('deleteItem not implemented')}
-const updateItem = (req, res) => { res.send('updateItem not implemented')}
 
 module.exports = {
   getAllLists,

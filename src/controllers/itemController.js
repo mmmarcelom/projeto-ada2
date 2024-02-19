@@ -35,7 +35,7 @@ const updateItem = async (req, res) => {
 
     let updatedItem = { ... oldItem, ... req.body } 
     console.log(updatedItem)
-    if(!await itemModel.updateItemById(id, updatedItem)) res.status(500).send("Error")
+    if(!await itemModel.updateItemById(id, updatedItem)) return res.status(500).send("Error")
     res.status(202).send("Updated")
 
 }
